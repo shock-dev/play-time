@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+}
+
+.item {
+  width: 100%;
+  color: #80868b;
+  background: transparent;
+  border: 0;
+  padding: 20px;
+  font-size: 14px;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--gray);
+}
+
+.active {
+  border-bottom: 2px solid var(--blue);
+  color: var(--blue);
+}
