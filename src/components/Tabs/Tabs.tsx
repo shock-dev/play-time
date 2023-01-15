@@ -1,9 +1,25 @@
 import cc from 'classcat';
 import styles from './tabs.module.scss';
+import { FC } from 'react';
 
-export const Tabs = () => (
-  <div className={styles.wrapper}>
-    <button className={cc([styles.item, styles.active])}>Timer</button>
-    <button className={styles.item}>Stopwatch</button>
-  </div>
-);
+interface TabsProps {
+  items: string[];
+  activeTab: number;
+  onToggle: (index: number) => void;
+}
+
+export const Tabs: FC<TabsProps> = ({ items, activeTab, onToggle }) => {
+  return (
+    <div className={styles.wrapper}>
+      {items.map((tab, idx) => (
+        <button
+          key={tab}
+          className={cc([styles.item, { [styles.active]: idx === activeTab }])}
+          onClick={() => onToggle(idx)}
+        >
+          {tab}
+        </button>
+      ))}
+    </div>
+  );
+};

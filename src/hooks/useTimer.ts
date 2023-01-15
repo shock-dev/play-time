@@ -44,5 +44,13 @@ export const useTimer = (startDuration: number = 300) => {
   const secs = duration - mins * 60;
   const extSecs = ('0' + secs).slice(-2);
 
-  return { mins, secs: extSecs, hrs, isRunning, onStart, onStop, onReset };
+  return {
+    isRunning,
+    onStart,
+    onStop,
+    onReset,
+    hrs: String(hrs),
+    mins: String(mins),
+    secs: extSecs,
+  };
 };
