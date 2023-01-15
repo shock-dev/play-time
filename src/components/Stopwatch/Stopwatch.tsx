@@ -5,9 +5,15 @@ import { useStopwatch } from '../../hooks/useStopwatch';
 
 export const Stopwatch = () => {
   const { mins, secs, isRunning, onStart, onStop } = useStopwatch();
+
+  const onToggle = () => {
+    if (isRunning) onStop();
+    else onStart();
+  };
+
   return (
     <>
-      <TimePanel mins={mins} secs={secs} />
+      <TimePanel mins={mins} secs={secs} onClick={onToggle} />
       <div className={styles.actions}>
         {isRunning ? (
           <Button onClick={onStop}>Stop</Button>

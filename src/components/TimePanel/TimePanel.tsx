@@ -5,11 +5,17 @@ interface TimePanelProps {
   hrs?: string;
   mins?: string;
   secs: string;
+  onClick?: () => void;
 }
 
-export const TimePanel: FC<TimePanelProps> = ({ hrs, mins, secs }) => {
+export const TimePanel: FC<TimePanelProps> = ({
+  hrs,
+  mins,
+  secs,
+  onClick = () => {},
+}) => {
   return (
-    <p className={styles.timer}>
+    <p className={styles.timer} onClick={onClick}>
       {hrs && (
         <>
           {hrs}

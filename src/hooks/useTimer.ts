@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Time from '../utils/Time';
 
 export const useTimer = (startDuration: number = 300) => {
   const [duration, setDuration] = useState(startDuration);
@@ -39,18 +40,11 @@ export const useTimer = (startDuration: number = 300) => {
     setDuration(startDuration);
   };
 
-  const hrs = ~~(duration / 3600);
-  const mins = ~~(duration / 60);
-  const secs = duration - mins * 60;
-  const extSecs = ('0' + secs).slice(-2);
-
   return {
+    ...Time.getTimeFromSeconds(duration),
     isRunning,
     onStart,
     onStop,
     onReset,
-    hrs: String(hrs),
-    mins: String(mins),
-    secs: extSecs,
   };
 };

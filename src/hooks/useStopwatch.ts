@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import Time from '../utils/Time';
 
 export const useStopwatch = () => {
   const [duration, setDuration] = useState(0);
@@ -17,15 +18,10 @@ export const useStopwatch = () => {
     setIsRunning(false);
   };
 
-  const mins = ~~(duration / 60);
-  const secs = duration - mins * 60;
-  const extSecs = ('0' + secs).slice(-2);
-
   return {
+    ...Time.getTimeFromSeconds(duration),
+    isRunning,
     onStart,
     onStop,
-    isRunning,
-    mins: String(mins),
-    secs: extSecs,
   };
 };
