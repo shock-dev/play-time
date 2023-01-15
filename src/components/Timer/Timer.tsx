@@ -1,10 +1,9 @@
 import styles from './timer.module.scss';
 import { Button } from '../Button';
 import { useTimer } from '../../hooks/useTimer';
-import { useEffect } from 'react';
 
 export const Timer = () => {
-  const { hrs, mins, secs, isRunning, onStart, onStop, onReset } = useTimer(2);
+  const { hrs, mins, secs, isRunning, onStart, onStop, onReset } = useTimer();
 
   return (
     <>

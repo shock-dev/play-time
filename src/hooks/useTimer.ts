@@ -7,12 +7,18 @@ export const useTimer = (startDuration: number = 300) => {
   useEffect(() => {
     let timerId: ReturnType<typeof setInterval>;
 
-    if (isRunning) {
+    if (isRunning && duration > 0) {
       timerId = setInterval(() => {
-        setDuration(prev => prev - 1);
+        setDuration(prev => {
+          if (prev < 2) {
+            setIsRunning(false);
+            return 0;
+          }
+
+          return prev - 1;
+        });
       }, 1000);
     }
-
     return () => {
       if (isRunning) {
         clearInterval(timerId);
@@ -21,7 +27,7 @@ export const useTimer = (startDuration: number = 300) => {
   }, [isRunning]);
 
   const onStart = () => {
-    setIsRunning(true);
+    if (duration > 0) setIsRunning(true);
   };
 
   const onStop = () => {
