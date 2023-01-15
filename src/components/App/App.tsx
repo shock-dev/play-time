@@ -8,18 +8,28 @@ const tabs: string[] = ['timer', 'stopwatch'];
 
 const tabsContent = [<Timer />, <Stopwatch />];
 
-export const App = () => {
-  const [activeTab, setActiveTab] = useState(0);
+const saveIndexToStorage = (id: number) => {
+  localStorage.setItem('activeTab', String(id));
+};
 
-  const changeTabByIndex = useCallback((index: number) => {
-    setActiveTab(index);
-  }, []);
+export const App = () => {
+  const [activeTab, setActiveTab] = useState(
+    localStorage.getItem('activeTab') || 0,
+  );
+
+  const changeTabByIndex = useCallback(
+    (index: number) => {
+      saveIndexToStorage(index);
+      setActiveTab(index);
+    },
+    [activeTab],
+  );
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.box}>
-        <Tabs items={tabs} activeTab={activeTab} onToggle={changeTabByIndex} />
-        {tabsContent[activeTab]}
+        <Tabs items={tabs} activeTab={+activeTab} onToggle={changeTabByIndex} />
+        {tabsContent[+activeTab]}
       </div>
     </div>
   );

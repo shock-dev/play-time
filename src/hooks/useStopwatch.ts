@@ -18,10 +18,16 @@ export const useStopwatch = () => {
     setIsRunning(false);
   };
 
+  const onReset = () => {
+    onStop();
+    setDuration(0);
+  };
+
   return {
     ...Time.getTimeFromSeconds(duration),
     isRunning,
     onStart,
     onStop,
+    onReset,
   };
 };

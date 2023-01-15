@@ -4,7 +4,7 @@ import { Button } from '../Button';
 import { useStopwatch } from '../../hooks/useStopwatch';
 
 export const Stopwatch = () => {
-  const { mins, secs, isRunning, onStart, onStop } = useStopwatch();
+  const { mins, secs, isRunning, onStart, onStop, onReset } = useStopwatch();
 
   const onToggle = () => {
     if (isRunning) onStop();
@@ -20,6 +20,7 @@ export const Stopwatch = () => {
         ) : (
           <Button onClick={onStart}>Start</Button>
         )}
+        <Button onClick={onReset}>Reset</Button>
       </div>
     </>
   );
